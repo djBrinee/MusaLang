@@ -21,12 +21,16 @@ namespace MusaLanguage.Clases
 
         public override string VisitComando([NotNull] musaParser.ComandoContext context)
         {
-            return base.VisitComando(context);
+            return base.VisitComando(context); //IF con parent por si viene de if?
         }
 
         public override string VisitCondicion([NotNull] musaParser.CondicionContext context)
         {
-            return base.VisitCondicion(context);
+            //todo: Construir la parte de l if hasta la primera llave
+            
+            return base.VisitCondicion(context); //Quitar return 
+            //poner la última llave
+            // Para eso separar if de else 
         }
 
         public override string VisitImpresion([NotNull] musaParser.ImpresionContext context)
@@ -50,18 +54,40 @@ namespace MusaLanguage.Clases
                 asignacion[0] = $"int {asignacion[0]}";
                 fuente += string.Join(" ", asignacion);
             }
-            
+
             return base.VisitInt(context);
+
+            
         }
 
         public override string VisitLoopFor([NotNull] musaParser.LoopForContext context)
         {
-            return base.VisitLoopFor(context);
+            string forVariableRaw = context.GetText().Split(';')[0]; //[for(variable,condicion,incremento)[comando]], tomo for(variable
+            string forVariable = forVariableRaw.Split('(')[1]; //[for,variable], tomo la variable
+            string variable = forVariable.Split('<')[0]; //[identificador, -valor], tomo el identificador
+            string condicion = context.GetText().Split(';')[1];
+            string incremento = context.GetText().Split(';')[2].Split(')')[0];
+            if (variables.Contains(variable))
+            {
+                fuente += $"for ({variable}; {condicion};{incremento})\n{{";
+            }
+            else
+            {
+                fuente += $"for (int {variable}; {condicion};{incremento})\n{{";
+            }
+            base.VisitLoopFor(context);
+            fuente += "}";
+            return "Done";
         }
 
         public override string VisitLoopWhile([NotNull] musaParser.LoopWhileContext context)
         {
-            return base.VisitLoopWhile(context);
+            string whileCondicion = context.GetText().Split('(')[1]; //[while(condicion)[comando]], tomo condicion)[comando]
+            string condicion = whileCondicion.Split(')')[0]; //[condicion,[comando]], tomo la condicion
+            fuente += $"while({condicion})\n{{";            
+            base.VisitLoopWhile(context);
+            fuente += "}\n";
+            return "Done";
         }
 
         public override string VisitMusa([NotNull] musaParser.MusaContext context)

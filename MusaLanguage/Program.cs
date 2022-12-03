@@ -21,7 +21,6 @@ namespace MusaLanguage
             string fuente = visitor.Visit(tree);
             Console.WriteLine(fuente);
             Console.ReadLine();
-
         }
     }
 }
