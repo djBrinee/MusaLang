@@ -9,6 +9,7 @@ namespace MusaLanguage.Clases
 {
     class Visitor : musaBaseVisitor<string>
     {
+        string fuente = "";
         public override string VisitComando([NotNull] musaParser.ComandoContext context)
         {
             return base.VisitComando(context);
@@ -19,18 +20,11 @@ namespace MusaLanguage.Clases
             return base.VisitCondicion(context);
         }
 
-        public override string VisitFactorSolo([NotNull] musaParser.FactorSoloContext context)
-        {
-            return base.VisitFactorSolo(context);
-        }
-
-        public override string VisitIdentificador([NotNull] musaParser.IdentificadorContext context)
-        {
-            return base.VisitIdentificador(context);
-        }
-
         public override string VisitImpresion([NotNull] musaParser.ImpresionContext context)
         {
+            string writeLine = context.GetText(); // monta(string);
+            writeLine = writeLine.Replace("monta", "Console.WriteLine");
+            Console.WriteLine(writeLine);
             return base.VisitImpresion(context);
         }
 
@@ -49,11 +43,6 @@ namespace MusaLanguage.Clases
             return base.VisitLoopWhile(context);
         }
 
-        public override string VisitMulODiv([NotNull] musaParser.MulODivContext context)
-        {
-            return base.VisitMulODiv(context);
-        }
-
         public override string VisitMusa([NotNull] musaParser.MusaContext context)
         {
             return base.VisitMusa(context);
@@ -69,19 +58,5 @@ namespace MusaLanguage.Clases
             return base.VisitString(context);
         }
 
-        public override string VisitSubexpresion([NotNull] musaParser.SubexpresionContext context)
-        {
-            return base.VisitSubexpresion(context);
-        }
-
-        public override string VisitSumORes([NotNull] musaParser.SumOResContext context)
-        {
-            return base.VisitSumORes(context);
-        }
-
-        public override string VisitTerminoSolo([NotNull] musaParser.TerminoSoloContext context)
-        {
-            return base.VisitTerminoSolo(context);
-        }
     }
 }

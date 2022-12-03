@@ -1,0 +1,11 @@
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\input.txt
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\MusaLanguage.exe.config
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\MusaLanguage.exe
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\MusaLanguage.pdb
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\Antlr4.Runtime.Standard.dll
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\Antlr4.Runtime.Standard.xml
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.csproj.CoreCompileInputs.cache
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.csproj.CopyComplete
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.exe
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.pdb
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.csproj.AssemblyReference.cache
