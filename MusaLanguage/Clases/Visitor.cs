@@ -26,11 +26,22 @@ namespace MusaLanguage.Clases
 
         public override string VisitCondicion([NotNull] musaParser.CondicionContext context)
         {
-            //todo: Construir la parte de l if hasta la primera llave
-            
-            return base.VisitCondicion(context); //Quitar return 
-            //poner la última llave
-            // Para eso separar if de else 
+            string ifVariable = context.GetText().Split(' ')[0];
+            string ifCondition = context.GetText().Split(' ')[1];
+
+            fuente += $"{ifVariable} ({ifCondition})\n{{";
+            base.VisitCondicion(context);
+            return "Done";
+        }
+
+        public override string VisitElse([NotNull] musaParser.ElseContext context)
+        {
+            string elseVariable = context.GetText().Split(' ')[0];
+
+            fuente += $"}}else\n{{";
+            base.VisitElse(context);
+            fuente += "}";
+            return "Done";
         }
 
         public override string VisitImpresion([NotNull] musaParser.ImpresionContext context)
@@ -56,8 +67,6 @@ namespace MusaLanguage.Clases
             }
 
             return base.VisitInt(context);
-
-            
         }
 
         public override string VisitLoopFor([NotNull] musaParser.LoopForContext context)
