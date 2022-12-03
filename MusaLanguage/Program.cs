@@ -19,6 +19,7 @@ namespace MusaLanguage
             var parser = new musaParser(tokenStream);
             var tree = parser.musa(); //Ejecucion de regla inicial
             string fuente = visitor.Visit(tree);
+            Console.WriteLine(fuente);
             Console.ReadLine();
 
         }
