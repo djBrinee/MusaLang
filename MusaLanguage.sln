@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusaLanguage", "MusaLanguage\MusaLanguage.csproj", "{9CBE1266-AC6F-40BF-8185-85B76C1115A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CBE1266-AC6F-40BF-8185-85B76C1115A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CBE1266-AC6F-40BF-8185-85B76C1115A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CBE1266-AC6F-40BF-8185-85B76C1115A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CBE1266-AC6F-40BF-8185-85B76C1115A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F76EBA10-813D-4CD4-92B0-E5B3294A0675}
+	EndGlobalSection
+EndGlobal
