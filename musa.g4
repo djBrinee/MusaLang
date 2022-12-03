@@ -2,17 +2,20 @@ grammar musa;
 
 musa : (comando)+ EOF;
 
-comando :  (asignacion) | (condicion) | (impresion) ;
+comando :  (asignacion) | (condicion) | (impresion) | (loopFor) | loopWhile;
 
+loopFor : FOR SPAR asignacion (COMP|BOOLEAN) INSEP 
+        (ID SUM NUM|ID DIF NUM|ID SUM SUM|ID DIF DIF)EPAR
+        SBR comando+ EBR
+;
 
-condicion : IF SEP+ COMP SEP+ THEN SEP+ SBR 
+loopWhile: WHILE SEP+ SPAR (COMP | BOOLEAN) EPAR SBR comando+ EBR;
+
+condicion : IF SEP+ COMP SEP+ THEN SEP* SBR 
 (comando)+ EBR (ELSE SBR (comando)+ EBR)? ;
 
 impresion : IMP SPAR (SENT|ID) EPAR INSEP
 ;
-
-// condicion2 : IF BOOLEAN THEN SBR 
-// (asignacion INSEP)+ EBR (ELSE SBR (asignacion INSEP)+ EBR)?;
 
 asignacion : ID ASSIGN expresion INSEP #int
             | ID ASSIGN SENT #string
@@ -35,7 +38,7 @@ FOR : 'for';
 WHILE : 'while';
 IMP : 'monta' | 'MONTA';
 BOOLEAN : 'TRUE' | 'FALSE' | 'true' | 'false' ;
-IF : 'if ' ;
+IF : 'if' ;
 THEN : 'then' ;
 ELSE : 'else' ;
 NUM : [0-9] ;

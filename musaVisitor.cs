@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from c:\Users\Deivy\OneDrive\Documents\INTEC\Trimestre #10\Construcción de software\Lab\Proyecto Parcial\musa.g4 by ANTLR 4.9.2
+// Generated from c:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\musa.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -43,6 +43,18 @@ public interface ImusaVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitComando([NotNull] musaParser.ComandoContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="musaParser.loopFor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLoopFor([NotNull] musaParser.LoopForContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="musaParser.loopWhile"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLoopWhile([NotNull] musaParser.LoopWhileContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="musaParser.condicion"/>.
 	/// </summary>
