@@ -12,7 +12,9 @@ loopFor : FOR SPAR asignacion (COMP|BOOLEAN) INSEP
 loopWhile: WHILE SEP+ SPAR (COMP | BOOLEAN) EPAR SBR comando+ EBR;
 
 condicion : IF SEP+ COMP SEP+ THEN SEP* SBR 
-(comando)+ EBR (ELSE SBR (comando)+ EBR)? ;
+(comando)+ EBR (else)? ;
+
+else : ELSE SBR (comando)+ EBR ;
 
 impresion : IMP SPAR (SENT|ID) EPAR INSEP
 ;

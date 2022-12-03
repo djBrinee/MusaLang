@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "configurations": [
+        {
+            "name": "Debug ANTLR4 grammar",
+            "type": "antlr-debug",
+            "request": "launch",
+            "input": "MusaLanguage/input.txt",
+            "grammar": "MusaLanguage/musa.g4",
+            "startRule": "musa",
+            "printParseTree": true,
+            "visualParseTree": true
+        }
+    ]
+}
