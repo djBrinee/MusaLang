@@ -1,4 +1,3 @@
-C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\input.txt
 C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\MusaLanguage.exe.config
 C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\MusaLanguage.exe
 C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\MusaLanguage.pdb
@@ -33,3 +32,4 @@ C:\Users\LEONEL\Source\Repos\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.csproj
 C:\Users\LEONEL\Source\Repos\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.csproj.CopyComplete
 C:\Users\LEONEL\Source\Repos\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.exe
 C:\Users\LEONEL\Source\Repos\MusaLang\MusaLanguage\obj\Debug\MusaLanguage.pdb
+C:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\bin\Debug\input.musa

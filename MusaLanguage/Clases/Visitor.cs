@@ -11,17 +11,10 @@ namespace MusaLanguage.Clases
     {
         string fuente = "";
         List<string> variables = new List<string>();
-        List<char> arrows = new List<char>()
-        {
-            '<',
-            '-'
-        };
-
-        char[] separator = { '<', '-' };
 
         public override string VisitComando([NotNull] musaParser.ComandoContext context)
         {
-            return base.VisitComando(context); //IF con parent por si viene de if?
+            return base.VisitComando(context);
         }
 
         public override string VisitCondicion([NotNull] musaParser.CondicionContext context)
@@ -29,8 +22,10 @@ namespace MusaLanguage.Clases
             string ifVariable = context.GetText().Split(' ')[0];
             string ifCondition = context.GetText().Split(' ')[1];
 
-            fuente += $"{ifVariable} ({ifCondition})\n{{";
+            fuente += $"{ifVariable} ({ifCondition})\n{{\n";
             base.VisitCondicion(context);
+            if(!context.GetText().Contains("else"))
+                fuente += "}\n";
             return "Done";
         }
 
@@ -38,9 +33,9 @@ namespace MusaLanguage.Clases
         {
             string elseVariable = context.GetText().Split(' ')[0];
 
-            fuente += $"}}else\n{{";
+            fuente += $"}}\nelse\n{{\n";
             base.VisitElse(context);
-            fuente += "}";
+            fuente += "}\n";
             return "Done";
         }
 
@@ -48,7 +43,7 @@ namespace MusaLanguage.Clases
         {
             string writeLine = context.GetText();
             writeLine = writeLine.Replace("monta", "Console.WriteLine");
-            fuente += writeLine;
+            fuente += writeLine + "\n";
             return base.VisitImpresion(context);
         }
 
@@ -58,12 +53,12 @@ namespace MusaLanguage.Clases
             var asignacion = tmp.Split(' ');
 
             if (variables.Contains(asignacion[0]))
-                fuente += string.Join(" ", asignacion);
+                fuente += string.Join(" ", asignacion) + "\n";
             else
             {
                 variables.Add(asignacion[0]);
                 asignacion[0] = $"int {asignacion[0]}";
-                fuente += string.Join(" ", asignacion);
+                fuente += string.Join(" ", asignacion) + "\n";
             }
 
             return base.VisitInt(context);
@@ -78,14 +73,14 @@ namespace MusaLanguage.Clases
             string incremento = context.GetText().Split(';')[2].Split(')')[0];
             if (variables.Contains(variable))
             {
-                fuente += $"for ({variable}; {condicion};{incremento})\n{{";
+                fuente += $"for ({variable}; {condicion};{incremento})\n{{\n";
             }
             else
             {
-                fuente += $"for (int {variable}; {condicion};{incremento})\n{{";
+                fuente += $"for (int {variable}; {condicion};{incremento})\n{{\n";
             }
             base.VisitLoopFor(context);
-            fuente += "}";
+            fuente += "}" + "\n";
             return "Done";
         }
 
@@ -93,7 +88,7 @@ namespace MusaLanguage.Clases
         {
             string whileCondicion = context.GetText().Split('(')[1]; //[while(condicion)[comando]], tomo condicion)[comando]
             string condicion = whileCondicion.Split(')')[0]; //[condicion,[comando]], tomo la condicion
-            fuente += $"while({condicion})\n{{";            
+            fuente += $"while({condicion})\n{{\n";            
             base.VisitLoopWhile(context);
             fuente += "}\n";
             return "Done";
@@ -116,12 +111,12 @@ namespace MusaLanguage.Clases
             var asignacion = tmp.Split(' ');
 
             if (variables.Contains(asignacion[0]))
-                fuente += string.Join(" ", asignacion);
+                fuente += string.Join(" ", asignacion) + "\n";
             else
             {
                 variables.Add(asignacion[0]);
                 asignacion[0] = $"string {asignacion[0]}";
-                fuente += string.Join(" ", asignacion);
+                fuente += string.Join(" ", asignacion) + "\n";
             }
 
             return base.VisitString(context);
