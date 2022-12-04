@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from c:\Users\moroc\Desktop\UNIVERSIDAD\Construccion\musa\MusaLang\MusaLanguage\musa.g4 by ANTLR 4.9.2
+// Generated from c:\Users\Deivy\OneDrive\Documents\INTEC\Trimestre #10\Construcción de software\Lab\Proyecto Parcial\MusaLang-1\MusaLanguage\musa.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -1055,13 +1055,11 @@ public partial class musaParser : Parser {
 		}
 	}
 	public partial class SubexpresionContext : FactorContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] SPAR() { return GetTokens(musaParser.SPAR); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPAR(int i) {
-			return GetToken(musaParser.SPAR, i);
-		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPAR() { return GetToken(musaParser.SPAR, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ExpresionContext expresion() {
 			return GetRuleContext<ExpresionContext>(0);
 		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EPAR() { return GetToken(musaParser.EPAR, 0); }
 		public SubexpresionContext(FactorContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -1146,7 +1144,7 @@ public partial class musaParser : Parser {
 				State = 160;
 				expresion(0);
 				State = 161;
-				Match(SPAR);
+				Match(EPAR);
 				}
 				break;
 			default:
@@ -1318,7 +1316,7 @@ public partial class musaParser : Parser {
 		'\x2', '\x2', '\x9E', '\x9F', '\x3', '\x2', '\x2', '\x2', '\x9F', '\xA6', 
 		'\x3', '\x2', '\x2', '\x2', '\xA0', '\xA6', '\a', '\f', '\x2', '\x2', 
 		'\xA1', '\xA2', '\a', '\x19', '\x2', '\x2', '\xA2', '\xA3', '\x5', '\x12', 
-		'\n', '\x2', '\xA3', '\xA4', '\a', '\x19', '\x2', '\x2', '\xA4', '\xA6', 
+		'\n', '\x2', '\xA3', '\xA4', '\a', '\x1A', '\x2', '\x2', '\xA4', '\xA6', 
 		'\x3', '\x2', '\x2', '\x2', '\xA5', '\x9C', '\x3', '\x2', '\x2', '\x2', 
 		'\xA5', '\xA0', '\x3', '\x2', '\x2', '\x2', '\xA5', '\xA1', '\x3', '\x2', 
 		'\x2', '\x2', '\xA6', '\x17', '\x3', '\x2', '\x2', '\x2', '\x12', '\x1B', 

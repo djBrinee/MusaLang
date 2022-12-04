@@ -33,7 +33,7 @@ termino : termino op=(MULT|DIV) factor #mulODiv
 
 factor : NUM+                      #numero
        | ID                       #identificador
-       | SPAR expresion SPAR      #subexpresion
+       | SPAR expresion EPAR      #subexpresion
        ;
 
 FOR : 'for'; 
