@@ -17,12 +17,46 @@ namespace MusaLanguage.Clases
             return base.VisitComando(context);
         }
 
+        public override string VisitStandardFor([NotNull] musaParser.StandardForContext context)
+        {
+            string variable = context.asignacion().GetText();
+            string condicion = context.comp().GetText();
+            string incremento = context.incremento().GetText();
+            if (variables.Contains(variable))
+            {
+                fuente += $"for ({variable} {condicion};{incremento})\n{{\n";
+            }
+            else
+            {
+                fuente += $"for (int {variable} {condicion};{incremento})\n{{\n";
+            }
+            base.VisitStandardFor(context);
+            fuente += "}" + "\n";
+            return "Done";
+        }
+        public override string VisitBooleanFor([NotNull] musaParser.BooleanForContext context)
+        {
+            string variable = context.asignacion().GetText();
+            string condicion = context.BOOLEAN().GetText().ToLower();
+            string incremento = context.incremento().GetText();
+            if (variables.Contains(variable))
+            {
+                fuente += $"for ({variable} {condicion};{incremento})\n{{\n";
+            }
+            else
+            {
+                fuente += $"for (int {variable} {condicion};{incremento})\n{{\n";
+            }
+            base.VisitBooleanFor(context);
+            fuente += "}" + "\n";
+            return "Done";
+        }
+
+
         public override string VisitCondicion([NotNull] musaParser.CondicionContext context)
         {
-            string ifVariable = context.GetText().Split(' ')[0];
-            string ifCondition = context.GetText().Split(' ')[1];
-
-            fuente += $"{ifVariable} ({ifCondition})\n{{\n";
+            string ifCondition = context.comp().GetText();
+            fuente += $"if ({ifCondition})\n{{\n";
             base.VisitCondicion(context);
             if(!context.GetText().Contains("else"))
                 fuente += "}\n";
@@ -31,8 +65,6 @@ namespace MusaLanguage.Clases
 
         public override string VisitElse([NotNull] musaParser.ElseContext context)
         {
-            string elseVariable = context.GetText().Split(' ')[0];
-
             fuente += $"}}\nelse\n{{\n";
             base.VisitElse(context);
             fuente += "}\n";
@@ -49,51 +81,34 @@ namespace MusaLanguage.Clases
 
         public override string VisitInt([NotNull] musaParser.IntContext context)
         {
-            var tmp = context.GetText().Replace("<-", "=");
-            var asignacion = tmp.Split(' ');
-
-            if (variables.Contains(asignacion[0]))
-                fuente += string.Join(" ", asignacion) + "\n";
+            string id = context.ID().GetText();
+            string expresion = context.expresion().GetText();
+            if (variables.Contains(context.ID().GetText()))
+                fuente += $"{id} = {expresion};" + "\n";
             else
             {
-                variables.Add(asignacion[0]);
-                asignacion[0] = $"int {asignacion[0]}";
-                fuente += string.Join(" ", asignacion) + "\n";
+                variables.Add(context.ID().GetText());
+                fuente += $"int {id} = {expresion};" + "\n";
             }
-
             return base.VisitInt(context);
         }
 
-        public override string VisitLoopFor([NotNull] musaParser.LoopForContext context)
+        public override string VisitConditionWhile([NotNull] musaParser.ConditionWhileContext context)
         {
-            string forVariableRaw = context.GetText().Split(';')[0]; //[for(variable,condicion,incremento)[comando]], tomo for(variable
-            string forVariable = forVariableRaw.Split('(')[1]; //[for,variable], tomo la variable
-            string variable = forVariable.Split('<')[0]; //[identificador, -valor], tomo el identificador
-            string condicion = context.GetText().Split(';')[1];
-            string incremento = context.GetText().Split(';')[2].Split(')')[0];
-            if (variables.Contains(variable))
-            {
-                fuente += $"for ({variable}; {condicion};{incremento})\n{{\n";
-            }
-            else
-            {
-                fuente += $"for (int {variable}; {condicion};{incremento})\n{{\n";
-            }
-            base.VisitLoopFor(context);
-            fuente += "}" + "\n";
-            return "Done";
-        }
-
-        public override string VisitLoopWhile([NotNull] musaParser.LoopWhileContext context)
-        {
-            string whileCondicion = context.GetText().Split('(')[1]; //[while(condicion)[comando]], tomo condicion)[comando]
-            string condicion = whileCondicion.Split(')')[0]; //[condicion,[comando]], tomo la condicion
-            fuente += $"while({condicion})\n{{\n";            
-            base.VisitLoopWhile(context);
+            string condicion = context.comp().GetText();
+            fuente += $"while({condicion})\n{{\n";
+            base.VisitConditionWhile(context);
             fuente += "}\n";
             return "Done";
         }
-
+        public override string VisitBooleanWhile([NotNull] musaParser.BooleanWhileContext context)
+        {
+            string condicion = context.BOOLEAN().GetText().ToLower();
+            fuente += $"while({condicion})\n{{\n";
+            VisitBooleanWhile(context);
+            fuente += "}\n";
+            return "Done";
+        }
         public override string VisitMusa([NotNull] musaParser.MusaContext context)
         {
             base.VisitMusa(context);
@@ -107,18 +122,15 @@ namespace MusaLanguage.Clases
 
         public override string VisitString([NotNull] musaParser.StringContext context)
         {
-            var tmp = context.GetText().Replace("<-", "=");
-            var asignacion = tmp.Split(' ');
-
-            if (variables.Contains(asignacion[0]))
-                fuente += string.Join(" ", asignacion) + "\n";
+            string id = context.ID().GetText();
+            string sentencia = context.SENT().GetText();
+            if (variables.Contains(context.ID().GetText()))
+                fuente += $"{id} = {sentencia};" + "\n";
             else
             {
-                variables.Add(asignacion[0]);
-                asignacion[0] = $"string {asignacion[0]}";
-                fuente += string.Join(" ", asignacion) + "\n";
+                variables.Add(context.ID().GetText());
+                fuente += $"string {id} = {sentencia};" + "\n";
             }
-
             return base.VisitString(context);
         }
 

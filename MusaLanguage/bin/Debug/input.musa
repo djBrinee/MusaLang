@@ -12,7 +12,7 @@ else
 a<-a-1;
 ]
 
-monta("probado")
+monta("probado");
 monta(a);
 
 for(a<-0;TRUE;a++)

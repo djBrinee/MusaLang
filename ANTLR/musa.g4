@@ -4,15 +4,27 @@ musa : (comando)+ EOF;
 
 comando :  (asignacion) | (condicion) | (impresion) | (loopFor) | loopWhile;
 
-loopFor : FOR SPAR asignacion (COMP|BOOLEAN) INSEP 
-        (ID SUM NUM|ID DIF NUM|ID SUM SUM|ID DIF DIF)EPAR
-        SBR comando+ EBR
+loopFor : FOR SPAR asignacion (comp) INSEP 
+        incremento EPAR
+        SBR comando+ EBR #standardFor
+        | FOR SPAR asignacion (BOOLEAN) INSEP 
+        incremento EPAR
+        SBR comando+ EBR #booleanFor
 ;
 
-loopWhile: WHILE SEP+ SPAR (COMP | BOOLEAN) EPAR SBR comando+ EBR;
+loopWhile: WHILE SEP+ SPAR (comp) EPAR SBR comando+ EBR #conditionWhile
+           |
+           WHILE SEP+ SPAR (BOOLEAN) EPAR SBR comando+ EBR #booleanWhile
+           ;
 
-condicion : IF SEP+ COMP SEP+ THEN SEP* SBR 
-(comando)+ EBR (ELSE SBR (comando)+ EBR)? ;
+condicion : IF SEP comp SEP+ THEN SEP* SBR 
+(comando)+ EBR (else)? ;
+
+incremento: ID SUM EQUAL NUM|ID DIF EQUAL  NUM|ID SUM SUM|ID DIF DIF;
+
+comp : (((ID|NUM+) OP (ID|NUM+)));
+
+else : ELSE SBR (comando)+ EBR ;
 
 impresion : IMP SPAR (SENT|ID) EPAR INSEP
 ;
@@ -31,18 +43,17 @@ termino : termino op=(MULT|DIV) factor #mulODiv
 
 factor : NUM+                      #numero
        | ID                       #identificador
-       | SPAR expresion SPAR      #subexpresion
+       | SPAR expresion EPAR      #subexpresion
        ;
 
 FOR : 'for'; 
 WHILE : 'while';
-IMP : 'monta' | 'MONTA';
+IMP : 'monta';
 BOOLEAN : 'TRUE' | 'FALSE' | 'true' | 'false' ;
 IF : 'if' ;
 THEN : 'then' ;
 ELSE : 'else' ;
 NUM : [0-9] ;
-COMP : (((ID|NUM+) OP (ID|NUM+)));
 ID : WORD NUM*;
 SENT : QUOTE WORD+ (SEP WORD)* QUOTE | QUOTE NUM+ QUOTE ;
 WORD : [A-Za-z]+ ;
@@ -60,6 +71,7 @@ SPAR : '(' ;
 EPAR : ')' ;
 SEP : ' ';
 OP : '==' | '>' | '<' | '>=' | '<=' | '<>' ;
+EQUAL: '=';
 
 
 

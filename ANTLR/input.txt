@@ -12,10 +12,20 @@ else
 a<-a-1;
 ]
 
+for(a<-0;a<10;a+=2)
+[
+        monta("hi");
+]
+
 monta("probado");
 monta(a);
 
 for(a<-0;TRUE;a++)
+[
+        monta("hi");
+]
+
+for(a<-0;a<10;a++)
 [
         monta("hi");
 ]
