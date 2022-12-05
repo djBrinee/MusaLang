@@ -22,15 +22,15 @@ condicion : IF SEP comp SEP+ THEN SEP* SBR
 
 incremento: ID SUM EQUAL NUM|ID DIF EQUAL  NUM|ID SUM SUM|ID DIF DIF;
 
-comp : (((ID|NUM+) OP (ID|NUM+)));
+comp : (((ID|NUM) OP (ID|NUM)));
 
 else : ELSE SBR (comando)+ EBR ;
-
-impresion : IMP SPAR (SENT|ID) EPAR INSEP
+sent : QUOTE (PALABRA|ID)* (SEP (PALABRA|ID))* QUOTE | QUOTE NUM QUOTE ;
+impresion : IMP SPAR (sent|ID) EPAR INSEP
 ;
 
 asignacion : ID ASSIGN expresion INSEP #int
-            | ID ASSIGN SENT #string
+            | ID ASSIGN sent #string
            ;
 
 expresion : expresion op=(SUM|DIF) termino #sumORes
@@ -41,7 +41,7 @@ termino : termino op=(MULT|DIV) factor #mulODiv
         | factor                      #factorSolo
         ;
 
-factor : NUM+                      #numero
+factor : NUM                      #numero
        | ID                       #identificador
        | SPAR expresion EPAR      #subexpresion
        ;
@@ -53,9 +53,9 @@ BOOLEAN : 'TRUE' | 'FALSE' | 'true' | 'false' ;
 IF : 'if' ;
 THEN : 'then' ;
 ELSE : 'else' ;
-NUM : [0-9] ;
-ID : WORD NUM*;
-SENT : QUOTE WORD+ (SEP WORD)* QUOTE | QUOTE NUM+ QUOTE ;
+NUM : [0-9]+ ;
+PALABRA : NUM | NUM WORD; 
+ID : [A-Za-z]+ [0-9]*;
 WORD : [A-Za-z]+ ;
 COMA : ',';
 QUOTE : '"';

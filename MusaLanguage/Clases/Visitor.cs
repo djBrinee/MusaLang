@@ -123,7 +123,7 @@ namespace MusaLanguage.Clases
         public override string VisitString([NotNull] musaParser.StringContext context)
         {
             string id = context.ID().GetText();
-            string sentencia = context.SENT().GetText();
+            string sentencia = context.sent().GetText();
             if (variables.Contains(context.ID().GetText()))
                 fuente += $"{id} = {sentencia};" + "\n";
             else
