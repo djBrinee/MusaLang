@@ -96,12 +96,6 @@ public interface ImusaVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitElse([NotNull] musaParser.ElseContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="musaParser.sent"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSent([NotNull] musaParser.SentContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="musaParser.impresion"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

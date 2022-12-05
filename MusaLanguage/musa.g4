@@ -4,17 +4,17 @@ musa : (comando)+ EOF;
 
 comando :  (asignacion) | (condicion) | (impresion) | (loopFor) | loopWhile;
 
-loopFor : FOR SPAR asignacion (comp) INSEP 
-        incremento EPAR
+loopFor : FOR SEP* SPAR SEP* asignacion SEP* (comp) INSEP 
+        SEP* incremento SEP* EPAR
         SBR comando+ EBR #standardFor
-        | FOR SPAR asignacion (BOOLEAN) INSEP 
-        incremento EPAR
+        | FOR SEP* SPAR SEP* asignacion SEP* (BOOLEAN) INSEP 
+        SEP* incremento SEP* EPAR
         SBR comando+ EBR #booleanFor
 ;
 
-loopWhile: WHILE SEP+ SPAR (comp) EPAR SBR comando+ EBR #conditionWhile
+loopWhile: WHILE SEP* SPAR (comp) EPAR SBR comando+ EBR #conditionWhile
            |
-           WHILE SEP+ SPAR (BOOLEAN) EPAR SBR comando+ EBR #booleanWhile
+           WHILE SEP* SPAR (BOOLEAN) EPAR SBR comando+ EBR #booleanWhile
            ;
 
 condicion : IF SEP comp SEP+ THEN SEP* SBR 
@@ -22,15 +22,14 @@ condicion : IF SEP comp SEP+ THEN SEP* SBR
 
 incremento: ID SUM EQUAL NUM|ID DIF EQUAL  NUM|ID SUM SUM|ID DIF DIF;
 
-comp : (((ID|NUM) OP (ID|NUM)));
+comp : (((ID|NUM) SEP* OP SEP* (ID|NUM)));
 
 else : ELSE SBR (comando)+ EBR ;
-sent : QUOTE (PALABRA|ID)* (SEP (PALABRA|ID))* QUOTE | QUOTE NUM QUOTE ;
-impresion : IMP SPAR (sent|ID) EPAR INSEP
+impresion : IMP SPAR (SENT|ID) EPAR INSEP
 ;
 
-asignacion : ID ASSIGN expresion INSEP #int
-            | ID ASSIGN sent #string
+asignacion : ID SEP* ASSIGN SEP* expresion SEP* INSEP #int
+            | ID ASSIGN SENT #string
            ;
 
 expresion : expresion op=(SUM|DIF) termino #sumORes
@@ -54,8 +53,9 @@ IF : 'if' ;
 THEN : 'then' ;
 ELSE : 'else' ;
 NUM : [0-9]+ ;
-PALABRA : NUM | NUM WORD; 
-ID : [A-Za-z]+ [0-9]*;
+SENT : QUOTE (PALABRA|ID)* (SEP (PALABRA|ID))* QUOTE | QUOTE NUM QUOTE ;
+PALABRA : NUM | (NUM WORD)+ | (NUM WORD NUM)+; 
+ID : ([A-Za-z]+ [0-9]*)+;
 WORD : [A-Za-z]+ ;
 COMA : ',';
 QUOTE : '"';

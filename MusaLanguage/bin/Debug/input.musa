@@ -1,27 +1,35 @@
 monta("Esto es una prueba");
-if a<b then
+if a < b then
 [
 a<-a+1;
 b<-a+1;
 c<-a+2;
 d<-b+a;
 monta("hello");
+if a<b then
+[
+a<-a+1;
+]
 ]
 else
 [
 a<-a-1;
 ]
 
-monta("probado");
+monta("1probado111a11121421affaf13 afsa214");
 monta(a);
 
-for(a<-0;TRUE;a++)
+for  ( a<-0; TRUE; a++)
 [
         monta("hi");
 ]
-while (a<b)
+while(a  <  b)
 [
-    a<-2+2;
+    a1adas113afafa<-2+2;
     b<-3+5;
     c<-a+b;
+]
+while (a  <  b)
+[
+    monta("while espaciado");
 ]

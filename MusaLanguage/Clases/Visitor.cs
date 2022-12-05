@@ -24,15 +24,15 @@ namespace MusaLanguage.Clases
             string incremento = context.incremento().GetText();
             if (variables.Contains(variable))
             {
-                fuente += $"for ({variable} {condicion};{incremento})\n{{\n";
+                fuente += $"for ({variable} {condicion}; {incremento})\n{{\n";
             }
             else
             {
-                fuente += $"for (int {variable} {condicion};{incremento})\n{{\n";
+                fuente += $"for (int {variable} {condicion}; {incremento})\n{{\n";
             }
             base.VisitStandardFor(context);
             fuente += "}" + "\n";
-            return "Done";
+            return "Done";           
         }
         public override string VisitBooleanFor([NotNull] musaParser.BooleanForContext context)
         {
@@ -123,7 +123,7 @@ namespace MusaLanguage.Clases
         public override string VisitString([NotNull] musaParser.StringContext context)
         {
             string id = context.ID().GetText();
-            string sentencia = context.sent().GetText();
+            string sentencia = context.SENT().GetText();
             if (variables.Contains(context.ID().GetText()))
                 fuente += $"{id} = {sentencia};" + "\n";
             else
